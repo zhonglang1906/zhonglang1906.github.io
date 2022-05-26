@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>变量 on ZHONG LANG</title>
+    <link>https://zhonglang1906.github.io/tags/%E5%8F%98%E9%87%8F/</link>
+    <description>Recent content in 变量 on ZHONG LANG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 26 May 2022 10:44:43 +0800</lastBuildDate><atom:link href="https://zhonglang1906.github.io/tags/%E5%8F%98%E9%87%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 变量声明</title>
+      <link>https://zhonglang1906.github.io/post/go-variable/</link>
+      <pubDate>Thu, 26 May 2022 10:44:43 +0800</pubDate>
+      
+      <guid>https://zhonglang1906.github.io/post/go-variable/</guid>
+      <description>静态语言区别于动态语言的一个特征：变量声明。 为了方便操作内存特定位置的数据，我们用一个特定的名字与位于特定位置的内存块绑定在一起，这个名字就</description>
+    </item>
+    
+  </channel>
+</rss>

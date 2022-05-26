@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Eloquent on ZHONG LANG</title>
+    <link>https://zhonglang1906.github.io/tags/eloquent/</link>
+    <description>Recent content in Eloquent on ZHONG LANG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 24 May 2022 15:12:31 +0800</lastBuildDate><atom:link href="https://zhonglang1906.github.io/tags/eloquent/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Laravel 中模型事件 Observer 的使用</title>
+      <link>https://zhonglang1906.github.io/post/laravel-observer/</link>
+      <pubDate>Tue, 24 May 2022 15:12:31 +0800</pubDate>
+      
+      <guid>https://zhonglang1906.github.io/post/laravel-observer/</guid>
+      <description>应用场景 如果想监听 model 中的各种事件，诸如updated、created 、deleted 等模型事件，你可以使用 Observer 类进行统一管理。只需这一个类，你</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Go 变量声明 - ZHONG LANG</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Zhong Lang" /><meta name="description" content="静态语言区别于动态语言的一个特征：变量声明。 为了方便操作内存特定位置的数据，我们用一个特定的名字与位于特定位置的内存块绑定在一起，这个名字就" /><meta name="keywords" content="Hugo, theme, even, zhonglang, golang, go, mysql, php" />
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1221415656202066"
+     crossorigin="anonymous"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8RSQ6QWBKT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8RSQ6QWBKT');
+</script>
+
+<meta name="msvalidate.01" content="B950B5C1B2841E3CDC0E5064FBAF1F4C" />
+<meta name="baidu-site-verification" content="code-bFdPw5OgTa" />
+
+
+<meta name="generator" content="Hugo 0.91.2 with theme even" />
+
+
+<link rel="canonical" href="https://zhonglang1906.github.io/post/go-variable/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="https://busuanzi.icodeq.com/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Go 变量声明" />
+<meta property="og:description" content="静态语言区别于动态语言的一个特征：变量声明。 为了方便操作内存特定位置的数据，我们用一个特定的名字与位于特定位置的内存块绑定在一起，这个名字就" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhonglang1906.github.io/post/go-variable/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-05-26T10:44:43+08:00" />
+<meta property="article:modified_time" content="2022-05-26T10:44:43+08:00" />
+
+<meta itemprop="name" content="Go 变量声明">
+<meta itemprop="description" content="静态语言区别于动态语言的一个特征：变量声明。 为了方便操作内存特定位置的数据，我们用一个特定的名字与位于特定位置的内存块绑定在一起，这个名字就"><meta itemprop="datePublished" content="2022-05-26T10:44:43+08:00" />
+<meta itemprop="dateModified" content="2022-05-26T10:44:43+08:00" />
+<meta itemprop="wordCount" content="995">
+<meta itemprop="keywords" content="variable,变量,declaration," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go 变量声明"/>
+<meta name="twitter:description" content="静态语言区别于动态语言的一个特征：变量声明。 为了方便操作内存特定位置的数据，我们用一个特定的名字与位于特定位置的内存块绑定在一起，这个名字就"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Go 变量声明</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-05-26 </span>
+        <div class="post-category">
+            <a href="/categories/go/"> Go </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>静态语言区别于动态语言的一个特征：变量声明。</p>
+<p>为了方便操作内存特定位置的数据，我们用一个特定的名字与位于特定位置的内存块绑定在一起，这个名字就是：变量。</p>
+<p>变量所绑定的内存区域要有一个明确的边界，边界由 “变量声明” 确定。</p>
+<p>使用变量之前，需要先进行变量声明。</p>
+<p>单独声明：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"> var a int = 10
+</code></pre></td></tr></table>
+</div>
+</div><p>默认原生类型的默认值：</p>
+<table>
+<thead>
+<tr>
+<th>内置原生类型</th>
+<th>默认值 (零值)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>所有整型类型</td>
+<td>0</td>
+</tr>
+<tr>
+<td>浮点类型</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>布尔类型</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>指针、接口、切片、channel、map和函数类型</td>
+<td>nil</td>
+</tr>
+</tbody>
+</table>
+<p>变量声明块：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var (
+		a int = 128
+		b int = 120
+		s string = &#34;heool&#34;
+		c rune = &#39;A&#39;
+		t bool = true
+)
+</code></pre></td></tr></table>
+</div>
+</div><p>一行变量声明中同事声明多个变量：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var a, b, c int = 1, 2, 33
+</code></pre></td></tr></table>
+</div>
+</div><p>同样的，也可在变量声明块中使用多变量声明：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var (
+		a, b, c int = 1, 2, 3
+		c, d, e rune = &#39;A&#39;, &#39;D&#39;, &#39;E&#39;
+)
+</code></pre></td></tr></table>
+</div>
+</div><p>两种变量声明 “语法糖”</p>
+<ol>
+<li>
+<p>省略变量声明中的类型信息。必须显式地赋予初始值。编译器通过给的初始值，自动推导出类型信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">var b = 12 // 使用默认的类型
+var c = int32(99) // 显式类型转换
+var d, e, f = 12, &#39;A&#39;, &#34;hello&#34; // 多变量声明
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>短变量声明。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">// 单独变量声明
+a := 12
+b := &#39;A&#39;
+c := &#34;hello&#34;
+
+// 多变量声明
+a, b, c := 12, &#39;A&#39;, &#34;hello&#34;
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>变量的作用范围：</p>
+<ol>
+<li>
+<p>包级变量</p>
+<blockquote>
+<p>包级别可见的变量。如果是导出变量(大写字母开头)，那么可被视为全局变量。</p>
+<p>声明方式，只能使用带有 var 关键字的变量声明方式，不能使用短变量声明形式。</p>
+<p>最佳实践：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 赋值时做类型的显示转换
+</span><span class="c1"></span><span class="kd">var</span> <span class="p">(</span>
+  	<span class="nx">a</span> <span class="p">=</span> <span class="mi">12</span>
+  	<span class="nx">b</span> <span class="p">=</span> <span class="nb">int32</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+  	<span class="nx">c</span> <span class="p">=</span> <span class="nb">float32</span><span class="p">(</span><span class="mf">3.141</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">// 声明聚类：将声明但延迟初始化、 声明同时初始化的变量放到不同的变量声明块中。
+</span><span class="c1"></span><span class="kd">var</span> <span class="p">(</span>
+  	<span class="nx">a</span> <span class="kt">int</span>
+  	<span class="nx">b</span> <span class="kt">bool</span>
+<span class="p">)</span>
+
+<span class="kd">var</span> <span class="p">(</span>
+  	<span class="nx">c</span> <span class="p">=</span> <span class="nb">int32</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+  	<span class="nx">d</span> <span class="p">=</span> <span class="nb">float32</span><span class="p">(</span><span class="mf">1.234</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">// 就近原则, 在需要使用该变量的
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">a</span> <span class="p">=</span> <span class="nb">int32</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">xxx</span><span class="p">()</span> <span class="p">{</span>
+  	<span class="c1">// use var a
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+</li>
+<li>
+<p>局部变量</p>
+<blockquote>
+<p>Go 函数或方法体内声明的变量，仅在函数或方法体内可见。</p>
+<p>声明方式，可使用 var 和短变量声明两种声明方式。</p>
+<p>最佳实践：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 延迟初始化的局部变量声明
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
+
+<span class="c1">// 声明且初始化的局部变量，建议使用短变量声明形式
+</span><span class="c1"></span><span class="nx">a</span> <span class="o">:=</span> <span class="mi">17</span>
+<span class="nx">f</span> <span class="o">:=</span> <span class="mf">3.14</span>
+<span class="nx">s</span> <span class="o">:=</span> <span class="s">&#34;hello world!&#34;</span>
+
+<span class="c1">// 对于不接受默认值的变量，依然采用短变量声明形式，显式类型转换放在右边。保持声明的一致性
+</span><span class="c1"></span><span class="nx">a</span> <span class="o">:=</span> <span class="nb">int32</span><span class="p">(</span><span class="mi">314</span><span class="p">)</span>
+<span class="nx">f</span> <span class="o">:=</span> <span class="nb">float32</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>
+<span class="nx">s</span> <span class="o">:=</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;hello, gopher!&#34;</span><span class="p">)</span>
+
+<span class="c1">// 尽量在分支控制时使用短变量声明形式
+</span><span class="c1"></span><span class="k">if</span> <span class="nx">as</span><span class="p">,</span> <span class="nx">isASCII</span> <span class="o">:=</span> <span class="nf">makeASCIISet</span><span class="p">(</span><span class="nx">chars</span><span class="p">);</span> <span class="nx">isASCII</span> <span class="p">{</span>
+ <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span> <span class="p">{</span>
+   <span class="c1">// do something
+</span><span class="c1"></span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 如果遇到适合聚类的应用场景，应该使用 var 声明块来声明多于一个的局部变量
+</span><span class="c1">// $GOROOT/src/net/dial.go
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">Resolver</span><span class="p">)</span> <span class="nf">resolveAddrList</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">op</span><span class="p">,</span> <span class="nx">network</span><span class="p">,</span> 
+                           <span class="nx">addr</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">hint</span> <span class="nx">Addr</span><span class="p">)</span> <span class="p">(</span><span class="nx">addrList</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+   <span class="o">...</span> <span class="o">...</span>
+   <span class="kd">var</span> <span class="p">(</span>
+       <span class="nx">tcp</span>      <span class="o">*</span><span class="nx">TCPAddr</span>
+       <span class="nx">udp</span>      <span class="o">*</span><span class="nx">UDPAddr</span>
+       <span class="nx">ip</span>       <span class="o">*</span><span class="nx">IPAddr</span>
+       <span class="nx">wildcard</span> <span class="kt">bool</span>
+   <span class="p">)</span>
+  <span class="o">...</span> <span class="o">...</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p>Go 和 C 声明方式上的不同：</p>
+<p>Go 是从左至右的读法，C 是螺旋式的读法。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Zhong Lang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2022-05-26
+        
+    </span>
+  </p>
+  
+  
+</div>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1221415656202066"
+     crossorigin="anonymous"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8RSQ6QWBKT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8RSQ6QWBKT');
+</script>
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/variable/">variable</a>
+          <a href="/tags/%E5%8F%98%E9%87%8F/">变量</a>
+          <a href="/tags/declaration/">declaration</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/laravel-observer/">
+            <span class="next-text nav-default">Laravel 中模型事件 Observer 的使用</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:itzhonglang@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhonglang1906.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>ZHONG LANG</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-8RSQ6QWBKT', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
